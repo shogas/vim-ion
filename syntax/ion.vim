@@ -23,8 +23,8 @@ syn match ionFloat display "\<\d\+[eE][+-]\=\d\+\(lf\|LF\|f\|F\)\="
 syn match ionFloat display "\<\d\+\.\d\+\([eE][+-]\=\d\+\)\=\(lf\|LF\|f\|F\)\="
 
 syntax keyword ionStructure enum struct union
-syntax keyword ionKeyword var const func
-
+syntax keyword ionKeyword var const
+syntax keyword ionFunction func
 syntax keyword ionType void char int float
 
 highlight link ionConditional Conditional
@@ -38,7 +38,9 @@ highlight link ionOctalInt   ionInteger
 highlight link ionHexInt     ionInteger
 highlight link ionInteger Number
 highlight link ionFloat Float
-
+highlight link ionStructure Structure
+highlight link ionFunction Function
+highlight link ionType Type
 
 let b:current_syntax = "ion"
 
