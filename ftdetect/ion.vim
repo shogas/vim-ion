@@ -1,1 +1,1 @@
-au BufNewFile,BufRead *.ion setfiletype=ion
+au BufNewFile,BufRead *.ion set filetype=ion

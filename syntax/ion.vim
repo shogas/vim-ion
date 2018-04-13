@@ -8,7 +8,7 @@ syntax keyword ionRepeat for while do
 syntax keyword ionStatement sizeof break continue return
 
 " Comments
-syn region ionCommentL start="//" skip="\\$" end="$" keepend contain
+syn region ionCommentL start="//" skip="\\$" end="$" keepend
 syn region ionComment matchgroup=ionCommentStart start="/\*" end="\*/" extend
 
 " Integer Numbers
