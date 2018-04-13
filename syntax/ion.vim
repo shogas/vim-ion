@@ -7,10 +7,17 @@ syntax keyword ionConditional if else switch case default
 syntax keyword ionRepeat      for while do
 syntax keyword ionStatement   sizeof break continue return
 
-syntax keyword ionStructure enum struct union
-syntax keyword ionKeyword   var const
-syntax keyword ionFunction  func
-syntax keyword ionType      void char int float
+syntax keyword ionStructure enum struct union typedef
+syntax keyword ionKeyword   var const func
+
+syntax keyword ionType      void
+syntax keyword ionType      bool
+syntax keyword ionType      char schar uchar
+syntax keyword ionType      short ushort
+syntax keyword ionType      int uint
+syntax keyword ionType      long ulong
+syntax keyword ionType      llong ullong
+syntax keyword ionType      float double
 
 " Comments
 syn region ionCommentL start="//" skip="\\$" end="$" keepend
@@ -27,6 +34,14 @@ syn match ionFloat display "\<\.\d\+\([eE][+-]\=\d\+\)\=\(lf\|LF\|f\|F\)\="
 syn match ionFloat display "\<\d\+[eE][+-]\=\d\+\(lf\|LF\|f\|F\)\="
 syn match ionFloat display "\<\d\+\.\d\+\([eE][+-]\=\d\+\)\=\(lf\|LF\|f\|F\)\="
 
+syn match	ionSpecial	display contained "\\\(x\x\+\|\o\{1,3}\|.\|$\)"
+syn match   ionSpecialError     contained "\\."
+syn match   ionSpecialCharError contained "[^']"
+syn match   ionSpecialChar      contained +\\["\\'0abfnrtvx]+
+syn region	ionString           start=+"+ skip=+\\\\\|\\"+ end=+"+ contains=ionSpecialChar,ionSpecialError
+syn match	ionCharacter        "L\='[^\\]'"
+syn match	ionCharacter        "L'[^']*'" contains=ionSpecial
+
 highlight default link ionConditional  Conditional
 highlight default link ionRepeat       Repeat
 highlight default link ionStatement    Statement
@@ -41,6 +56,13 @@ highlight default link ionFloat        Float
 highlight default link ionStructure    Structure
 highlight default link ionType         Type
 highlight default link ionKeyword      Keyword
+
+highlight default link ionSpecialError     Error
+highlight default link ionSpecialCharError Error
+highlight default link ionString           String
+highlight default link ionCharacter        Character
+highlight default link ionSpecialChar      SpecialChar
+
 
 let b:current_syntax = "ion"
 
