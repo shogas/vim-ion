@@ -10,7 +10,7 @@ syntax keyword ionStatement   sizeof break continue return
 syntax keyword ionStructure enum struct union typedef
 syntax keyword ionKeyword   var const func
 
-syntax keyword ionConstant true false null
+syntax keyword ionConstant true false NULL
 
 syntax keyword ionType      void
 syntax keyword ionType      bool
@@ -26,15 +26,18 @@ syn region ionCommentL start="//" skip="\\$" end="$" keepend
 syn region ionComment  matchgroup=ionCommentStart start="/\*" end="\*/" extend
 
 " Integer Numbers
-syn match ionDecimalInt display "\<\(0\|[1-9]\d*\)[uU]\?"
-syn match ionOctalInt   display "\<0\o\+[uU]\?"
-syn match ionHexInt     display "\<0[xX]\x\+[uU]\?"
+syn case ignore
+syn match ionDecimalInt display "\<\(0\|[1-9]\d*\)\(u\=l\{0,2}\|ll\=u\)\>"
+syn match ionBinaryInt  display "\<0b[01]\+\>"
+syn match ionOctalInt   display "\<0\o\+\(u\=l\{0,2}\|ll\=u\)\>"
+syn match ionHexInt     display "\<0x\x\+\(u\=l\{0,2}\|ll\=u\)\>"
 
 " Float Numbers
-syn match ionFloat display "\<\d\+\.\([eE][+-]\=\d\+\)\=\(lf\|LF\|f\|F\)\="
-syn match ionFloat display "\<\.\d\+\([eE][+-]\=\d\+\)\=\(lf\|LF\|f\|F\)\="
-syn match ionFloat display "\<\d\+[eE][+-]\=\d\+\(lf\|LF\|f\|F\)\="
-syn match ionFloat display "\<\d\+\.\d\+\([eE][+-]\=\d\+\)\=\(lf\|LF\|f\|F\)\="
+syn match ionFloat display "\<\d\+\.\(e[+-]\=\d\+\)\=d\="
+syn match ionFloat display "\<\.\d\+\(e[+-]\=\d\+\)\=d\="
+syn match ionFloat display "\<\d\+e[+-]\=\d\+d\="
+syn match ionFloat display "\<\d\+\.\d\+\(e[+-]\=\d\+\)\=d\="
+syn case match
 
 syn match	ionSpecial	display contained "\\\(x\x\+\|\o\{1,3}\|.\|$\)"
 syn match   ionSpecialError     contained "\\."
@@ -51,6 +54,7 @@ highlight default link ionCommentL     ionComment
 highlight default link ionCommentStart ionComment
 highlight default link ionComment      Comment
 highlight default link ionDecimalInt   ionInteger
+highlight default link ionBinaryInt    ionInteger
 highlight default link ionOctalInt     ionInteger
 highlight default link ionHexInt       ionInteger
 highlight default link ionInteger      Number
