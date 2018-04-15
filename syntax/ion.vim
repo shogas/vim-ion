@@ -39,13 +39,14 @@ syn match ionFloat display "\<\d\+e[+-]\=\d\+d\="
 syn match ionFloat display "\<\d\+\.\d\+\(e[+-]\=\d\+\)\=d\="
 syn case match
 
-syn match	ionSpecial	display contained "\\\(x\x\+\|\o\{1,3}\|.\|$\)"
-syn match   ionSpecialError     contained "\\."
-syn match   ionSpecialCharError contained "[^']"
-syn match   ionSpecialChar      contained +\\["\\'0abfnrtvx]+
-syn region	ionString           start=+"+ skip=+\\\\\|\\"+ end=+"+ contains=ionSpecialChar,ionSpecialError
-syn match	ionCharacter        "L\='[^\\]'"
-syn match	ionCharacter        "L'[^']*'" contains=ionSpecial
+syn match  ionSpecialError     contained "\\."
+syn match  ionSpecialCharError contained "[^']"
+syn match  ionSpecial          contained display "\\\(x\x\+\|\o\{1,3}\|.\|$\)"
+syn match  ionSpecialChar      contained +\\["\\'0abfnrtvx]+
+syn region ionString           start=+"+ skip=+\\\\\|\\"+ end=+"+ contains=ionSpecial,ionSpecialError
+syn region ionStringMultiline  start=+"""+ end=+"""+ keepend contains=ionSpecial,ionSpecialError
+syn match  ionCharacter        "L\='[^\\]'"
+syn match  ionCharacter        "L'[^']*'" contains=ionSpecial
 
 highlight default link ionConditional  Conditional
 highlight default link ionRepeat       Repeat
@@ -67,7 +68,9 @@ highlight default link ionConstant     Constant
 highlight default link ionSpecialError     Error
 highlight default link ionSpecialCharError Error
 highlight default link ionString           String
+highlight default link ionStringMultiline  String
 highlight default link ionCharacter        Character
+highlight default link ionSpecial          SpecialChar
 highlight default link ionSpecialChar      SpecialChar
 
 
