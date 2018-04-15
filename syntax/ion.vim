@@ -10,6 +10,8 @@ syntax keyword ionStatement   sizeof break continue return
 syntax keyword ionStructure enum struct union typedef
 syntax keyword ionKeyword   var const func
 
+syntax keyword ionConstant true false null
+
 syntax keyword ionType      void
 syntax keyword ionType      bool
 syntax keyword ionType      char schar uchar
@@ -56,6 +58,7 @@ highlight default link ionFloat        Float
 highlight default link ionStructure    Structure
 highlight default link ionType         Type
 highlight default link ionKeyword      Keyword
+highlight default link ionConstant     Constant
 
 highlight default link ionSpecialError     Error
 highlight default link ionSpecialCharError Error
