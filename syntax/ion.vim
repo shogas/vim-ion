@@ -8,22 +8,22 @@ syntax keyword ionRepeat      for while do
 syntax keyword ionStatement   sizeof break continue return
 
 syntax keyword ionStructure enum struct union typedef
-syntax keyword ionKeyword   var const func
+syntax keyword ionKeyword   var const func foreign
 
 syntax keyword ionConstant true false NULL
 
 syntax keyword ionType      void
 syntax keyword ionType      bool
-syntax keyword ionType      char schar uchar
-syntax keyword ionType      short ushort
-syntax keyword ionType      int uint
+syntax keyword ionType      char schar uchar int8 uint8
+syntax keyword ionType      short ushort int16 uint16
+syntax keyword ionType      int uint int32 uint32
 syntax keyword ionType      long ulong
-syntax keyword ionType      llong ullong
+syntax keyword ionType      llong ullong int64 uint64
 syntax keyword ionType      float double
 
 " Comments
 syn region ionCommentL start="//" skip="\\$" end="$" keepend
-syn region ionComment  matchgroup=ionCommentStart start="/\*" end="\*/" extend
+syn match ionComment  "/\*.*\*/"
 
 " Integer Numbers
 syn case ignore
@@ -39,6 +39,7 @@ syn match ionFloat display "\<\d\+e[+-]\=\d\+d\="
 syn match ionFloat display "\<\d\+\.\d\+\(e[+-]\=\d\+\)\=d\="
 syn case match
 
+" Strings
 syn match  ionSpecialError     contained "\\."
 syn match  ionSpecialCharError contained "[^']"
 syn match  ionSpecial          contained display "\\\(x\x\+\|\o\{1,3}\|.\|$\)"
@@ -72,7 +73,6 @@ highlight default link ionStringMultiline  String
 highlight default link ionCharacter        Character
 highlight default link ionSpecial          SpecialChar
 highlight default link ionSpecialChar      SpecialChar
-
 
 let b:current_syntax = "ion"
 
